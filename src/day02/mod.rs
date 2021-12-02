@@ -12,7 +12,7 @@ pub enum Command {
     Up(u32),
 }
 
-#[derive(Debug, Default)]
+#[derive(Debug, Clone, Copy, Default, PartialEq)]
 pub struct Position {
     x: i64,
     y: i64,

@@ -4,7 +4,7 @@ use std::num::ParseIntError;
 use thiserror::Error;
 
 #[derive(Debug, Error)]
-pub enum ParseError {
+pub enum Error {
     #[error("Invalid command {0}")]
     InvalidCommand(String),
 
@@ -12,19 +12,16 @@ pub enum ParseError {
     InvalidNumber(#[source] ParseIntError),
 }
 
-pub fn course_from_str(str: &str) -> Result<Vec<Command>, ParseError> {
+pub fn course_from_str(str: &str) -> Result<Vec<Command>, Error> {
     let re = Regex::new(r"^(forward|up|down)\s+(\d+)$").unwrap();
     let mut course = vec![];
     for line in str.lines() {
         let cap = re
             .captures(line)
-            .ok_or_else(|| ParseError::InvalidCommand(line.into()))?;
+            .ok_or_else(|| Error::InvalidCommand(line.into()))?;
         match (cap.get(1), cap.get(2)) {
             (Some(command), Some(n)) => {
-                let n = n
-                    .as_str()
-                    .parse::<u32>()
-                    .map_err(ParseError::InvalidNumber)?;
+                let n = n.as_str().parse::<u32>().map_err(Error::InvalidNumber)?;
                 let command = match command.as_str() {
                     "forward" => Command::Forward(n),
                     "down" => Command::Down(n),
@@ -33,7 +30,7 @@ pub fn course_from_str(str: &str) -> Result<Vec<Command>, ParseError> {
                 };
                 course.push(command);
             }
-            _ => return Err(ParseError::InvalidCommand(line.into())),
+            _ => return Err(Error::InvalidCommand(line.into())),
         }
     }
     Ok(course)
@@ -42,7 +39,7 @@ pub fn course_from_str(str: &str) -> Result<Vec<Command>, ParseError> {
 #[cfg(test)]
 mod test {
     use crate::day02::{
-        parse::{course_from_str, ParseError},
+        parse::{course_from_str, Error},
         Command, INPUT,
     };
 
@@ -81,13 +78,13 @@ up 234"##,
     #[test]
     fn rejects_invalid_input() {
         assert!(
-            matches!(course_from_str("forward 30,").unwrap_err(), ParseError::InvalidCommand(c) if c == "forward 30,".to_string())
+            matches!(course_from_str("forward 30,").unwrap_err(), Error::InvalidCommand(c) if c == "forward 30,".to_string())
         );
         assert!(
-            matches!(course_from_str("Up 300").unwrap_err(), ParseError::InvalidCommand(c) if c == "Up 300".to_string())
+            matches!(course_from_str("Up 300").unwrap_err(), Error::InvalidCommand(c) if c == "Up 300".to_string())
         );
         assert!(
-            matches!(course_from_str("down -14").unwrap_err(), ParseError::InvalidCommand(c) if c == "down -14".to_string())
+            matches!(course_from_str("down -14").unwrap_err(), Error::InvalidCommand(c) if c == "down -14".to_string())
         );
     }
 }
