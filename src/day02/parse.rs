@@ -1,33 +1,9 @@
-use std::num::ParseIntError;
-
+use super::Command;
 use regex::Regex;
+use std::num::ParseIntError;
+use thiserror::Error;
 
-#[derive(Debug, PartialEq, Copy, Clone)]
-pub enum Command {
-    Forward(u32),
-    Down(u32),
-    Up(u32),
-}
-
-#[derive(Debug, Default)]
-pub struct Position {
-    x: i64,
-    y: i64,
-}
-
-pub fn navigate_by_course(course: &[Command]) -> Position {
-    let mut position = Position::default();
-    for command in course {
-        match command {
-            Command::Forward(n) => position.x += i64::from(*n),
-            Command::Down(n) => position.y += i64::from(*n),
-            Command::Up(n) => position.y -= i64::from(*n),
-        }
-    }
-    position
-}
-
-#[derive(Debug, thiserror::Error)]
+#[derive(Debug, Error)]
 pub enum ParseError {
     #[error("Invalid command {0}")]
     InvalidCommand(String),
@@ -36,7 +12,7 @@ pub enum ParseError {
     InvalidNumber(#[source] ParseIntError),
 }
 
-pub fn parse_course_from_str(str: &str) -> Result<Vec<Command>, ParseError> {
+pub fn course_from_str(str: &str) -> Result<Vec<Command>, ParseError> {
     let re = Regex::new(r"(forward|up|down)\s+(\d+)").unwrap();
     let mut course = vec![];
     for line in str.lines() {
@@ -64,28 +40,12 @@ pub fn parse_course_from_str(str: &str) -> Result<Vec<Command>, ParseError> {
 }
 
 #[cfg(test)]
-mod tests {
-    use super::{navigate_by_course, parse_course_from_str, Command};
-
-    const INPUT: &str = include_str!("../input/day02.txt");
-
-    #[test]
-    fn basic_input_results_in_15() {
-        let commands = vec![
-            Command::Forward(5),
-            Command::Down(5),
-            Command::Forward(8),
-            Command::Up(3),
-            Command::Down(8),
-            Command::Forward(2),
-        ];
-        let final_position = navigate_by_course(&commands);
-        assert_eq!(final_position.x * final_position.y, 150);
-    }
+mod test {
+    use crate::day02::{parse::course_from_str, Command, INPUT};
 
     #[test]
     fn parses_sample_str() {
-        let course = parse_course_from_str(
+        let course = course_from_str(
             r##"forward 30
 up 2
 down 1
@@ -107,13 +67,6 @@ up 234"##,
 
     #[test]
     fn parses_input_str_ok() {
-        assert!(parse_course_from_str(INPUT).is_ok());
-    }
-
-    #[test]
-    fn computes_result() {
-        let course = parse_course_from_str(INPUT).unwrap();
-        let final_position = navigate_by_course(&course);
-        assert_eq!(1924923, final_position.x * final_position.y);
+        assert!(course_from_str(INPUT).is_ok());
     }
 }
