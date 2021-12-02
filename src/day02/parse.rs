@@ -13,7 +13,7 @@ pub enum ParseError {
 }
 
 pub fn course_from_str(str: &str) -> Result<Vec<Command>, ParseError> {
-    let re = Regex::new(r"(forward|up|down)\s+(\d+)").unwrap();
+    let re = Regex::new(r"^(forward|up|down)\s+(\d+)$").unwrap();
     let mut course = vec![];
     for line in str.lines() {
         let cap = re
@@ -41,7 +41,10 @@ pub fn course_from_str(str: &str) -> Result<Vec<Command>, ParseError> {
 
 #[cfg(test)]
 mod test {
-    use crate::day02::{parse::course_from_str, Command, INPUT};
+    use crate::day02::{
+        parse::{course_from_str, ParseError},
+        Command, INPUT,
+    };
 
     #[test]
     fn parses_sample_str() {
@@ -68,5 +71,23 @@ up 234"##,
     #[test]
     fn parses_input_str_ok() {
         assert!(course_from_str(INPUT).is_ok());
+    }
+
+    #[test]
+    fn accepts_empty_input() {
+        assert_eq!(course_from_str("").unwrap(), vec![]);
+    }
+
+    #[test]
+    fn rejects_invalid_input() {
+        assert!(
+            matches!(course_from_str("forward 30,").unwrap_err(), ParseError::InvalidCommand(c) if c == "forward 30,".to_string())
+        );
+        assert!(
+            matches!(course_from_str("Up 300").unwrap_err(), ParseError::InvalidCommand(c) if c == "Up 300".to_string())
+        );
+        assert!(
+            matches!(course_from_str("down -14").unwrap_err(), ParseError::InvalidCommand(c) if c == "down -14".to_string())
+        );
     }
 }
