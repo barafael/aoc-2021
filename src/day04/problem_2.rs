@@ -1,6 +1,9 @@
 #[cfg(test)]
 mod tests {
-    use crate::day04::{game::Game, test::INPUT, EXAMPLE_INPUT};
+    use crate::day04::{
+        game::Game,
+        test::{EXAMPLE_INPUT, INPUT},
+    };
 
     #[test]
     fn computes_basic_input() {

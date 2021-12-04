@@ -57,7 +57,7 @@ mod tests {
     use crate::day03::{
         parse_from_str,
         problem_2::{calculate_co2_rating, calculate_oxygen_rating},
-        INPUT,
+        test::INPUT,
     };
 
     #[test]

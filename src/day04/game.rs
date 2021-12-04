@@ -67,7 +67,10 @@ impl TryFrom<&str> for Game {
 #[cfg(test)]
 mod test {
     use super::Game;
-    use crate::day04::{board::Board, test::INPUT, EXAMPLE_INPUT};
+    use crate::day04::{
+        board::Board,
+        test::{EXAMPLE_INPUT, INPUT},
+    };
 
     #[test]
     fn parses_game() {

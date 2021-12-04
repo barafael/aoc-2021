@@ -1,9 +1,6 @@
 pub mod problem_1;
 pub mod problem_2;
 
-#[cfg(test)]
-pub const INPUT: &str = include_str!("../../input/day03.txt");
-
 const fn bit_is_set(num: u16, index: usize) -> bool {
     if index > 15 {
         return false;
@@ -38,6 +35,8 @@ pub fn parse_from_str(s: &str) -> Vec<u16> {
 #[cfg(test)]
 mod test {
     use crate::day03::{count_ones_in_all_columns, count_ones_in_column, parse_from_str};
+
+    pub const INPUT: &str = include_str!("../../input/day03.txt");
 
     #[test]
     fn counts_ones_in_column() {

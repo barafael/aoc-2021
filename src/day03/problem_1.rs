@@ -15,7 +15,7 @@ pub fn calculate_power_consumption(patterns: &[u16], width: usize) -> usize {
 #[cfg(test)]
 mod tests {
     use super::calculate_power_consumption;
-    use crate::day03::{parse_from_str, INPUT};
+    use crate::day03::{parse_from_str, test::INPUT};
 
     #[test]
     fn computes_basic_input() {
