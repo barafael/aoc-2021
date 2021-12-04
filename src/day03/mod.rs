@@ -4,7 +4,7 @@ pub mod problem_2;
 #[cfg(test)]
 pub const INPUT: &str = include_str!("../../input/day03.txt");
 
-fn bit_is_set(num: u16, index: usize) -> bool {
+const fn bit_is_set(num: u16, index: usize) -> bool {
     if index > 15 {
         return false;
     }
