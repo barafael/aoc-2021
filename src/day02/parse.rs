@@ -1,4 +1,5 @@
 use super::Command;
+use lazy_static::lazy_static;
 use regex::Regex;
 use std::num::ParseIntError;
 use thiserror::Error;
@@ -12,11 +13,14 @@ pub enum Error {
     InvalidNumber(#[source] ParseIntError),
 }
 
+lazy_static! {
+    static ref COMMAND_REGEX: Regex = Regex::new(r"^(forward|up|down)\s+(\d+)$").unwrap();
+}
+
 pub fn course_from_str(str: &str) -> Result<Vec<Command>, Error> {
-    let re = Regex::new(r"^(forward|up|down)\s+(\d+)$").unwrap();
     let mut course = vec![];
     for line in str.lines() {
-        let cap = re
+        let cap = COMMAND_REGEX
             .captures(line)
             .ok_or_else(|| Error::InvalidCommand(line.into()))?;
         match (cap.get(1), cap.get(2)) {

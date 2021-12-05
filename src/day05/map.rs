@@ -19,7 +19,7 @@ impl std::fmt::Display for Map {
                     } else {
                         self.entries[i][j].to_string()
                     }
-                )?
+                )?;
             }
             writeln!(f)?;
         }
@@ -48,6 +48,18 @@ impl Map {
             let max = usize::max(l.start.x, l.end.x);
             for x in min..=max {
                 self.entries[l.start.y][x] += 1;
+            }
+        } else if let Some(len) = l.is_diagonal() {
+            let x_step: isize = if l.start.x < l.end.x { 1 } else { -1 };
+            let y_step: isize = if l.start.y < l.end.y { 1 } else { -1 };
+            let mut point = l.start;
+            for _ in 0..=len {
+                self.entries[point.y][point.x] += 1;
+                if point == l.end {
+                    break;
+                }
+                point.x = (point.x as isize + x_step) as usize;
+                point.y = (point.y as isize + y_step) as usize;
             }
         }
     }
@@ -119,12 +131,56 @@ mod test {
     }
 
     #[test]
-    fn feed_lines_hor_vert() {
+    fn marks_lines_hor_vert() {
         let mut map = Map::new(10, 10);
         let lines = Sequence::try_from(EXAMPLE_INPUT).unwrap();
-        for line in lines.0 {
+        let lines = lines.0.iter().filter(|l| !l.is_diagonal().is_some());
+        for line in lines {
             map.feed(&line);
         }
         assert_eq!(*MAP, map);
+    }
+
+    #[test]
+    fn marks_diagonal() {
+        let mut map = Map::new(10, 10);
+        let line = Sequence::try_from(EXAMPLE_INPUT).unwrap().0[1];
+        let expected = Map {
+            width: 10,
+            height: 10,
+            entries: vec![
+                vec![0, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+                vec![0, 0, 0, 0, 0, 0, 0, 1, 0, 0],
+                vec![0, 0, 0, 0, 0, 0, 1, 0, 0, 0],
+                vec![0, 0, 0, 0, 0, 1, 0, 0, 0, 0],
+                vec![0, 0, 0, 0, 1, 0, 0, 0, 0, 0],
+                vec![0, 0, 0, 1, 0, 0, 0, 0, 0, 0],
+                vec![0, 0, 1, 0, 0, 0, 0, 0, 0, 0],
+                vec![0, 1, 0, 0, 0, 0, 0, 0, 0, 0],
+                vec![1, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+                vec![0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            ],
+        };
+        map.feed(&line);
+        assert_eq!(expected, map);
+        let line = Sequence::try_from(EXAMPLE_INPUT).unwrap().0[8];
+        map.feed(&line);
+        let expected = Map {
+            width: 10,
+            height: 10,
+            entries: vec![
+                vec![1, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+                vec![0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
+                vec![0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+                vec![0, 0, 0, 1, 0, 1, 0, 0, 0, 0],
+                vec![0, 0, 0, 0, 2, 0, 0, 0, 0, 0],
+                vec![0, 0, 0, 1, 0, 1, 0, 0, 0, 0],
+                vec![0, 0, 1, 0, 0, 0, 1, 0, 0, 0],
+                vec![0, 1, 0, 0, 0, 0, 0, 1, 0, 0],
+                vec![1, 0, 0, 0, 0, 0, 0, 0, 1, 0],
+                vec![0, 0, 0, 0, 0, 0, 0, 0, 0, 0],
+            ],
+        };
+        assert_eq!(expected, map);
     }
 }

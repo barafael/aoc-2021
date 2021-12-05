@@ -1,8 +1,8 @@
+use super::{Line, Point, Sequence};
+use lazy_static::lazy_static;
 use regex::Regex;
 use std::num::ParseIntError;
 use thiserror::Error;
-
-use super::{Line, Point, Sequence};
 
 #[derive(Debug, Error)]
 pub enum Error {
@@ -13,16 +13,19 @@ pub enum Error {
     InvalidNumber(#[from] ParseIntError),
 }
 
+lazy_static! {
+    static ref POINT_REGEX: Regex = Regex::new(r"^(\d+),(\d+)\s->\s(\d+),(\d+)$").unwrap();
+}
+
 impl TryFrom<&str> for Line {
     type Error = Error;
 
     fn try_from(value: &str) -> Result<Self, Self::Error> {
-        let re = Regex::new(r"^(\d+),(\d+)\s->\s(\d+),(\d+)$").unwrap(); // TODO lazy_static
-        let cap = re
+        let cap = POINT_REGEX
             .captures(value)
             .ok_or_else(|| Error::InvalidLine(value.into()))?;
 
-        Ok(Line {
+        Ok(Self {
             start: Point {
                 x: cap.get(1).unwrap().as_str().parse::<usize>()?,
                 y: cap.get(2).unwrap().as_str().parse::<usize>()?,
@@ -39,7 +42,7 @@ impl TryFrom<&str> for Sequence {
     type Error = Error;
 
     fn try_from(value: &str) -> Result<Self, Self::Error> {
-        Ok(Sequence(
+        Ok(Self(
             value
                 .lines()
                 .map(Line::try_from)
