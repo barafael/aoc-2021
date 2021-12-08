@@ -1,6 +1,7 @@
 use std::num::ParseIntError;
 
 pub mod problem_1;
+pub mod problem_2;
 
 pub fn parse_to_vec(input: &str) -> Result<Vec<usize>, ParseIntError> {
     input
