@@ -1,11 +1,12 @@
-use std::str::FromStr;
+use std::{collections::HashSet, str::FromStr};
 
 pub mod problem_1;
 pub mod problem_2;
+mod sevenseg_deduction;
 
 #[derive(Debug, Clone, Eq, PartialEq)]
 pub struct Entry {
-    patterns: Vec<String>,
+    patterns: Vec<HashSet<char>>,
     output: Vec<String>,
 }
 
@@ -23,13 +24,14 @@ impl FromStr for Entry {
         let tokens = &mut tokens.iter();
         let patterns = tokens
             .take(10)
-            .cloned()
+            .copied()
             .map(String::from)
-            .collect::<Vec<_>>();
+            .map(|s| s.chars().collect())
+            .collect::<Vec<HashSet<_>>>();
         let _pipe = tokens.next().ok_or(())?;
         let output = tokens
             .take(4)
-            .cloned()
+            .copied()
             .map(String::from)
             .collect::<Vec<_>>();
         Ok(Entry { patterns, output })
