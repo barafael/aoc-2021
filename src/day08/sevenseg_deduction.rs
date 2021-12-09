@@ -1,6 +1,6 @@
 use std::collections::HashSet;
 
-pub(crate) fn deduce_three_and_two_five(
+pub fn deduce_three_and_two_five(
     one: &HashSet<char>,
     three_and_two_five: &[HashSet<char>],
 ) -> (HashSet<char>, Vec<HashSet<char>>) {
@@ -13,7 +13,7 @@ pub(crate) fn deduce_three_and_two_five(
     (three[0].clone(), two_five)
 }
 
-pub(crate) fn deduce_six_and_zero_nine(
+pub fn deduce_six_and_zero_nine(
     one: &HashSet<char>,
     six_and_zero_nine: &[HashSet<char>],
 ) -> (HashSet<char>, Vec<HashSet<char>>) {
@@ -26,7 +26,7 @@ pub(crate) fn deduce_six_and_zero_nine(
     (six[0].clone(), zero_nine)
 }
 
-pub(crate) fn deduce_zero_and_nine(
+pub fn deduce_zero_and_nine(
     four: &HashSet<char>,
     zero_and_nine: &[HashSet<char>],
 ) -> (HashSet<char>, HashSet<char>) {
@@ -39,7 +39,7 @@ pub(crate) fn deduce_zero_and_nine(
     (zero[0].clone(), nine[0].clone())
 }
 
-pub(crate) fn deduce_two_and_five(
+pub fn deduce_two_and_five(
     nine: &HashSet<char>,
     one: &HashSet<char>,
     two_five: &[HashSet<char>],

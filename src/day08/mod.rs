@@ -34,7 +34,7 @@ impl FromStr for Entry {
             .copied()
             .map(String::from)
             .collect::<Vec<_>>();
-        Ok(Entry { patterns, output })
+        Ok(Self { patterns, output })
     }
 }
 
