@@ -30,6 +30,7 @@ mod tests {
     };
     use std::collections::HashSet;
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn expand_region() {
         let input = parse_to_vec_vec(EXAMPLE_INPUT);
@@ -40,6 +41,7 @@ mod tests {
         );
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn computes_example_result() {
         let input = parse_to_vec_vec(EXAMPLE_INPUT);

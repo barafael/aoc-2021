@@ -3,6 +3,11 @@ name = "aoc"
 version = "0.1.0"
 edition = "2021"
 
+[features]
+non_solution_test = []
+
+default = ["non_solution_test"]
+
 [dependencies]
 itertools = "0.10.1"
 lazy_static = "1.4.0"

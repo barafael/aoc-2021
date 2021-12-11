@@ -33,11 +33,13 @@ mod test {
 <{([([[(<>()){}]>(<<{{
 <{([{{}}[<[[[<>{}]]]>[]]";
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn parses_example_input() {
         let _input = parse_navigation_program(EXAMPLE_INPUT);
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn parses_input() {
         let _input = parse_navigation_program(INPUT);

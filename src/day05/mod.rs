@@ -46,6 +46,7 @@ mod test {
 0,0 -> 8,8
 5,5 -> 8,2"##;
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn point_partial_eq() {
         let a = Point { x: 1, y: 4 };

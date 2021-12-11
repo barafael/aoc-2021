@@ -53,6 +53,7 @@ impl Fish {
 mod test {
     use super::Fish;
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn fish_life_goals() {
         let mut fish = Fish::default();

@@ -82,6 +82,7 @@ mod test {
     use super::World;
     use crate::day06::{naive::fish::Fish, test::INPUT};
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn parses_example_world() {
         let input = "3,4,3,1,2";
@@ -101,12 +102,14 @@ mod test {
         );
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn parses_input_ok() {
         let world = World::try_from(INPUT);
         assert!(world.is_ok()); // I have hope.
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn formats_example_initial_world() {
         let fish: Vec<Fish> = vec![
@@ -120,6 +123,7 @@ mod test {
         assert_eq!("Initial state: 3,4,3,1,2\n", format!("{}", world));
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn formats_example_young_world() {
         let fish = vec![
@@ -133,6 +137,7 @@ mod test {
         assert_eq!("After  1 day:  2,3,2,0,1\n", format!("{}", world));
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn formats_example_less_young_world() {
         let fish = vec![
@@ -151,6 +156,7 @@ mod test {
         assert_eq!("After  8 days: 2,3,2,0,1,2,3,4,4,5\n", format!("{}", world));
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn formats_example_late_world() {
         let fish = vec![

@@ -18,6 +18,7 @@ mod test {
     pub const INPUT: &str = include_str!("../../input/day07.txt");
     pub const EXAMPLE_INPUT: &str = "16,1,2,0,4,2,7,1,2,14";
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn parses_input_ok() {
         assert!(parse_to_vec(INPUT).is_ok());

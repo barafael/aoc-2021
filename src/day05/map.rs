@@ -90,6 +90,7 @@ mod test {
         };
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn map_displays() {
         let expected = r##".......1..
@@ -106,6 +107,7 @@ mod test {
         assert_eq!(expected, format!("{}", *MAP))
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn feeds_vert_line() {
         let mut map = Map::new(10, 10);
@@ -130,6 +132,7 @@ mod test {
         assert_eq!(expected, map);
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn marks_lines_hor_vert() {
         let mut map = Map::new(10, 10);
@@ -141,6 +144,7 @@ mod test {
         assert_eq!(*MAP, map);
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn marks_diagonal() {
         let mut map = Map::new(10, 10);

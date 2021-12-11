@@ -19,6 +19,7 @@ mod test {
 
     pub const INPUT: &str = include_str!("../../input/day11.txt");
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn parses_input() {
         let _input = parse_octopi(INPUT);

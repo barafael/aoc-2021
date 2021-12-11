@@ -151,6 +151,7 @@ mod tests {
         marks: [[false; 5]; 5],
     };
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn marks_numbers() {
         let mut board = EXAMPLE_BOARD;
@@ -162,6 +163,7 @@ mod tests {
         assert!(board.marks[0][3]);
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn detects_rows() {
         let mut board = EXAMPLE_BOARD;
@@ -172,6 +174,7 @@ mod tests {
         assert!(!board.has_column());
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn detects_columns() {
         let mut board = EXAMPLE_BOARD;
@@ -186,6 +189,7 @@ mod tests {
         assert!(!board.has_row());
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn detects_win() {
         let mut board = EXAMPLE_BOARD;
@@ -199,6 +203,7 @@ mod tests {
         );
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn sums_up_unmarked() {
         let board = EXAMPLE_BOARD;
@@ -208,6 +213,7 @@ mod tests {
         assert_eq!(280, board.sum_unmarked());
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn parses_board_from_basic_example_str() {
         let board = Board::try_from(EXAMPLE_BOARD_STR);

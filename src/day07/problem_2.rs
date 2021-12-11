@@ -28,6 +28,7 @@ mod tests {
         test::{EXAMPLE_INPUT, INPUT},
     };
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn calculates_cost_for_example_data() {
         let data = parse_to_vec(EXAMPLE_INPUT).unwrap();

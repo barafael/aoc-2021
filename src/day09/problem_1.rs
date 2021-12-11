@@ -5,6 +5,7 @@ mod tests {
         test::{EXAMPLE_INPUT, INPUT},
     };
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn calculates_sum_of_risk_levels_example_data() {
         let input = parse_to_vec_vec(EXAMPLE_INPUT);

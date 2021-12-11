@@ -18,6 +18,7 @@ mod tests {
 222111....
 "##;
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn computes_example() {
         let mut map = Map::new(10, 10);

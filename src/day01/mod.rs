@@ -25,24 +25,28 @@ mod tests {
 
     const INPUT: &str = include_str!("../../input/day01.txt");
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn sonar_sweep_returns_2_increases() {
         let measurements = vec![199, 200, 208];
         assert_eq!(sonar_sweep(&measurements), 2);
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn sonar_sweep_returns_3_increases() {
         let measurements = vec![199, 200, 208, 210];
         assert_eq!(sonar_sweep(&measurements), 3);
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn sonar_sweep_returns_7_increases() {
         let measurements = vec![199, 200, 208, 210, 200, 207, 240, 269, 260, 263];
         assert_eq!(sonar_sweep(&measurements), 7);
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn sonar_sweep_returns_0_increases_on_emtpy_array() {
         let measurements = vec![];
@@ -55,6 +59,7 @@ mod tests {
         assert_eq!(sonar_sweep(&measurements), 1233);
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn sonar_sweep_filtered_returns_5_increases() {
         let measurements = vec![607, 618, 618, 617, 647, 716, 769, 792];

@@ -72,6 +72,7 @@ mod test {
         test::{EXAMPLE_INPUT, INPUT},
     };
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn parses_game() {
         let example = Game::try_from(EXAMPLE_INPUT).unwrap();
@@ -117,6 +118,7 @@ mod test {
         assert_eq!(example_game, example);
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn parses_input_ok() {
         let _example = Game::try_from(INPUT).unwrap();

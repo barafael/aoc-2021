@@ -5,6 +5,7 @@ mod tests {
         test::{EXAMPLE_INPUT, INPUT},
     };
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn computes_basic_input() {
         let mut game = Game::try_from(EXAMPLE_INPUT).unwrap();

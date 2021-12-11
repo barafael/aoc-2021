@@ -38,6 +38,7 @@ mod test {
 
     pub const INPUT: &str = include_str!("../../input/day03.txt");
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn counts_ones_in_column() {
         let input = vec![4, 30, 22, 23, 21, 15, 7, 28, 16, 25, 2, 10];
@@ -51,6 +52,7 @@ mod test {
         assert_eq!(8, counter);
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn counts_ones_in_all_columns() {
         let input = vec![4, 30, 22, 23, 21, 15, 7, 28, 16, 25, 2, 10];
@@ -58,6 +60,7 @@ mod test {
         assert_eq!(vec![5, 7, 8, 5, 7], counter);
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn parses_basic_input() {
         let basic_input = r##"00100

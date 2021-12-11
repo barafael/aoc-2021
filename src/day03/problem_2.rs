@@ -60,6 +60,7 @@ mod tests {
         test::INPUT,
     };
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn splits_by_bit() {
         let input = vec![4, 30, 22, 23, 21, 15, 7, 28, 16, 25, 2, 10];
@@ -70,6 +71,7 @@ mod tests {
         );
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn calculates_basic_oxygen_is_23() {
         let input = vec![4, 30, 22, 23, 21, 15, 7, 28, 16, 25, 2, 10];
@@ -77,6 +79,7 @@ mod tests {
         assert_eq!(23, oxygen);
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn calculates_basic_co2_is_10() {
         let input = vec![4, 30, 22, 23, 21, 15, 7, 28, 16, 25, 2, 10];

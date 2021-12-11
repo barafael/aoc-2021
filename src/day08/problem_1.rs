@@ -23,6 +23,7 @@ mod tests {
         test::{EXAMPLE_INPUT, INPUT},
     };
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn computes_26_instances_in_example_input() {
         let entries = parse_to_vec(EXAMPLE_INPUT);

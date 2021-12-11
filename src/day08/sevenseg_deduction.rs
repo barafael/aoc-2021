@@ -60,6 +60,7 @@ mod test {
 
     use crate::day08::sevenseg_deduction::{deduce_six_and_zero_nine, deduce_three_and_two_five};
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn deduces_three_and_two_five() {
         let two_and_three_five: Vec<HashSet<char>> = vec![
@@ -88,6 +89,7 @@ mod test {
         );
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn deduces_six_and_zero_nine() {
         let zero_and_six_nine: Vec<HashSet<char>> = vec![
@@ -116,6 +118,7 @@ mod test {
         );
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn deduces_zero_and_nine() {
         let zero_and_nine: Vec<HashSet<char>> = vec![
@@ -140,6 +143,7 @@ mod test {
         );
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn deduces_two_and_five() {
         let two_and_five: Vec<HashSet<char>> = vec![

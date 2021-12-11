@@ -17,6 +17,7 @@ mod tests {
     use super::{navigate_by_course, Command};
     use crate::day02::{parse::course_from_str, INPUT};
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn basic_input_results_in_15() {
         let commands = vec![

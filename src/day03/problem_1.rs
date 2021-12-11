@@ -17,6 +17,7 @@ mod tests {
     use super::calculate_power_consumption;
     use crate::day03::{parse_from_str, test::INPUT};
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn computes_basic_input() {
         let numbers = vec![4, 30, 22, 23, 21, 15, 7, 28, 16, 25, 2, 10];

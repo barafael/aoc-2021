@@ -47,6 +47,7 @@ mod test {
         Command, INPUT,
     };
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn parses_sample_str() {
         let course = course_from_str(
@@ -69,16 +70,19 @@ up 234"##,
         assert_eq!(expected, course);
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn parses_input_str_ok() {
         assert!(course_from_str(INPUT).is_ok());
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn accepts_empty_input() {
         assert_eq!(course_from_str("").unwrap(), vec![]);
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn rejects_invalid_input() {
         assert!(

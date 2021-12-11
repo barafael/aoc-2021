@@ -5,6 +5,7 @@ mod tests {
         test::INPUT,
     };
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn simulates_example_problem_fish_count() {
         let initial_fish = vec![
@@ -22,6 +23,7 @@ mod tests {
         assert_eq!(26, world.how_many_fish());
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn simulates_example_problem() {
         let initial_fish = vec![

@@ -26,6 +26,7 @@ mod tests {
         Sequence,
     };
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn computes_basic_example() {
         let seq = Sequence::try_from(EXAMPLE_INPUT).unwrap();

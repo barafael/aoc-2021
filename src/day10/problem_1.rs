@@ -7,6 +7,8 @@ mod tests {
         Tag,
     };
 
+    // TODO move some tests to inspect.rs
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn detects_close_curly_brace() {
         let line = "{([(<{}[<>[]}>{[]{[(<()>";
@@ -15,6 +17,7 @@ mod tests {
         assert_eq!(LineStatus::Corrupt(Tag::CloseCurlyBrace), result);
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn detects_close_parenthesis() {
         let line = "[[<[([]))<([[{}[[()]]]";
@@ -27,6 +30,7 @@ mod tests {
         assert_eq!(LineStatus::Corrupt(Tag::CloseParenthesis), result);
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn detects_close_square_bracket() {
         let line = "[{[{({}]{}}([{[{{{}}([]";
@@ -35,6 +39,7 @@ mod tests {
         assert_eq!(LineStatus::Corrupt(Tag::CloseSquareBracket), result);
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn detects_close_angle_bracket() {
         let line = "<{([([[(<>()){}]>(<<{{";
@@ -43,6 +48,7 @@ mod tests {
         assert_eq!(LineStatus::Corrupt(Tag::CloseAngleBracket), result);
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn computes_example_program() {
         let program = parse_navigation_program(EXAMPLE_INPUT);

@@ -20,6 +20,7 @@ pub fn navigate_by_course(course: &[Command]) -> Position {
 mod tests {
     use crate::day02::{parse, problem_2::navigate_by_course, Command, INPUT};
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn basic_input_results_in_900() {
         let course = vec![

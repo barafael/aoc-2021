@@ -99,6 +99,7 @@ mod test {
 8767896789
 9899965678";
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn parses_input_ok() {
         let _input = parse_to_vec_vec(INPUT);

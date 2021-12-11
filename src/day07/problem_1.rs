@@ -26,6 +26,7 @@ mod tests {
         test::{EXAMPLE_INPUT, INPUT},
     };
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn brute_force_on_example_data() {
         let example_data = parse_to_vec(EXAMPLE_INPUT).unwrap();

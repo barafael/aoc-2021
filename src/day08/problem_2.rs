@@ -77,6 +77,7 @@ mod tests {
     };
     use std::collections::HashSet;
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn computes_from_minimal_input() {
         let input = parse_to_vec(
@@ -86,6 +87,7 @@ mod tests {
         assert_eq!(5353, sum);
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn computes_from_example_input() {
         let input = parse_to_vec(EXAMPLE_INPUT);
@@ -106,6 +108,7 @@ mod tests {
         assert_eq!(994266, sum);
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn filters_by_len() {
         let sets = ["ab", "abc", "def", "fga", "ez"]

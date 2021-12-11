@@ -69,6 +69,7 @@ mod tests {
         test::INPUT,
     };
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     #[ignore = "naive solution has inadequately long run time :)"]
     fn simulates_example_problem_fish_count_naive() {
@@ -87,6 +88,7 @@ mod tests {
         assert_eq!(26984457539, world.how_many_fish());
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn makes_fish_tank() {
         let world = World::try_from(vec![3, 4, 3, 1, 2]).unwrap();
@@ -99,6 +101,7 @@ mod tests {
         );
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn simulates_example_problem_fish_count() {
         let initial_fish = vec![3, 4, 3, 1, 2];
@@ -109,6 +112,7 @@ mod tests {
         assert_eq!(26, world.how_many_fish());
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn simulates_example_problem_fish_count_after_80_days() {
         let initial_fish = vec![3, 4, 3, 1, 2];
@@ -119,6 +123,7 @@ mod tests {
         assert_eq!(5934, world.how_many_fish());
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn simulates_example_problem_fish_count_after_256_days() {
         let initial_fish = vec![3, 4, 3, 1, 2];

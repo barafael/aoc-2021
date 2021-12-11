@@ -55,6 +55,7 @@ mod tests {
     use super::octopus_blinky_party;
     use crate::day11::{parse_octopi, test::INPUT};
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn party_with_example_data() {
         let initial = "11111
@@ -93,6 +94,7 @@ mod tests {
         );
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn party_with_example_input_10_steps() {
         let mut party = parse_octopi(

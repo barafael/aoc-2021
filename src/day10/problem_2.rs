@@ -23,16 +23,15 @@ pub fn calculate_score(completion: &[Tag]) -> usize {
 #[cfg(test)]
 mod tests {
     use itertools::Itertools;
-
     use crate::day10::{
         inspect::{inspect, LineStatus},
         parse_navigation_program,
         tag::Tag,
         test::{EXAMPLE_INPUT, INPUT},
     };
-
     use super::calculate_score;
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn makes_completion_sequence_1() {
         let input = "[({(<(())[]>[[{[]{<()<>>";
@@ -53,6 +52,7 @@ mod tests {
         );
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn makes_completion_sequence_2() {
         let input = "[(()[<>])]({[<{<<[]>>(";
@@ -71,6 +71,7 @@ mod tests {
         );
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn makes_completion_sequence_3() {
         let input = "(((({<>}<{<{<>}{[]{[]{}";
@@ -92,6 +93,7 @@ mod tests {
         );
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn makes_completion_sequence_4() {
         let input = "{<[[]]>}<{[{[{[]{()[[[]";
@@ -113,6 +115,7 @@ mod tests {
         );
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn makes_completion_sequence_5() {
         let input = "<{([{{}}[<[[[<>{}]]]>[]]";
@@ -129,6 +132,7 @@ mod tests {
         );
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn calculates_score() {
         let input = vec![
@@ -141,6 +145,7 @@ mod tests {
         assert_eq!(294, score);
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn calculates_example_result() {
         let input = parse_navigation_program(EXAMPLE_INPUT);

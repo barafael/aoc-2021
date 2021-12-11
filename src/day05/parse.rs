@@ -55,6 +55,7 @@ impl TryFrom<&str> for Sequence {
 mod test {
     use crate::day05::{test::EXAMPLE_INPUT, Line, Point, Sequence};
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn parses_sequence() {
         let line = Line::try_from("5,6 -> 7,8").unwrap();
@@ -67,6 +68,7 @@ mod test {
         );
     }
 
+    #[cfg(feature = "non_solution_test")]
     #[test]
     fn parses_example_input() {
         let sequence = Sequence::try_from(EXAMPLE_INPUT).unwrap();
