@@ -23,7 +23,7 @@ pub fn buff_to_vec(input: &str) -> Result<Vec<u32>, ParseIntError> {
 mod tests {
     use super::{buff_to_vec, sonar_sweep, sonar_sweep_filtered};
 
-    const INPUT: &str = include_str!("../input/day01.txt");
+    const INPUT: &str = include_str!("../../input/day01.txt");
 
     #[test]
     fn sonar_sweep_returns_2_increases() {
