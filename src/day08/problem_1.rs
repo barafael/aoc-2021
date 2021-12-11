@@ -17,11 +17,10 @@ pub fn count_1_4_7_8(entries: &[Entry]) -> usize {
 
 #[cfg(test)]
 mod tests {
-    use crate::day08::{
-        parse_to_vec,
-        problem_1::count_1_4_7_8,
-        test::{EXAMPLE_INPUT, INPUT},
-    };
+    use crate::day08::{parse_to_vec, problem_1::count_1_4_7_8, test::INPUT};
+
+    #[cfg(feature = "non_solution_test")]
+    use crate::day08::test::EXAMPLE_INPUT;
 
     #[cfg(feature = "non_solution_test")]
     #[test]

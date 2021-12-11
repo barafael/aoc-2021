@@ -63,11 +63,12 @@ impl TryFrom<Vec<u8>> for World {
 
 #[cfg(test)]
 mod tests {
-    use crate::day06::{
-        naive::{fish::Fish, world::World as NaiveWorld},
-        problem_2::World,
-        test::INPUT,
-    };
+    use crate::day06::{problem_2::World, test::INPUT};
+
+    #[cfg(feature = "non_solution_test")]
+    use crate::day06::naive::fish::Fish;
+    #[cfg(feature = "non_solution_test")]
+    use crate::day06::naive::world::World as NaiveWorld;
 
     #[cfg(feature = "non_solution_test")]
     #[test]

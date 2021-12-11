@@ -90,9 +90,12 @@ pub fn find_low_points(height_map: &[Vec<u8>]) -> Vec<(usize, usize)> {
 
 #[cfg(test)]
 mod test {
+    #[cfg(feature = "non_solution_test")]
     use super::parse_to_vec_vec;
 
     pub const INPUT: &str = include_str!("../../input/day09.txt");
+
+    #[cfg(feature = "non_solution_test")]
     pub const EXAMPLE_INPUT: &str = "2199943210
 3987894921
 9856789892

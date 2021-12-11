@@ -1,9 +1,9 @@
 #[cfg(test)]
 mod test {
-    use crate::day04::{
-        game::Game,
-        test::{EXAMPLE_INPUT, INPUT},
-    };
+    use crate::day04::{game::Game, test::INPUT};
+
+    #[cfg(feature = "non_solution_test")]
+    use crate::day04::test::EXAMPLE_INPUT;
 
     #[cfg(feature = "non_solution_test")]
     #[test]

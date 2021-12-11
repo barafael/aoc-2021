@@ -53,7 +53,8 @@ impl TryFrom<&str> for Sequence {
 
 #[cfg(test)]
 mod test {
-    use crate::day05::{test::EXAMPLE_INPUT, Line, Point, Sequence};
+    #[cfg(feature = "non_solution_test")]
+    use crate::day05::{Line, Point, Sequence};
 
     #[cfg(feature = "non_solution_test")]
     #[test]
@@ -71,7 +72,7 @@ mod test {
     #[cfg(feature = "non_solution_test")]
     #[test]
     fn parses_example_input() {
-        let sequence = Sequence::try_from(EXAMPLE_INPUT).unwrap();
+        let sequence = Sequence::try_from(crate::day05::test::EXAMPLE_INPUT).unwrap();
         dbg!(sequence);
     }
 }

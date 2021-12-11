@@ -68,8 +68,10 @@ impl Map {
 #[cfg(test)]
 mod test {
     use super::Map;
-    use crate::day05::{test::EXAMPLE_INPUT, Sequence};
     use lazy_static::lazy_static;
+
+    #[cfg(feature = "non_solution_test")]
+    use crate::day05::{test::EXAMPLE_INPUT, Sequence};
 
     lazy_static! {
         static ref MAP: Map = Map {

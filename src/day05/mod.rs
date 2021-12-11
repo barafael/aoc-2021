@@ -32,9 +32,9 @@ impl Line {
 
 #[cfg(test)]
 mod test {
-    use super::Point;
-
     pub const INPUT: &str = include_str!("../../input/day05.txt");
+
+    #[cfg(feature = "non_solution_test")]
     pub const EXAMPLE_INPUT: &str = r##"0,9 -> 5,9
 8,0 -> 0,8
 9,4 -> 3,4
@@ -49,6 +49,7 @@ mod test {
     #[cfg(feature = "non_solution_test")]
     #[test]
     fn point_partial_eq() {
+        use crate::day05::Point;
         let a = Point { x: 1, y: 4 };
         let b = Point { x: 5, y: 9 };
         assert!(a <= b);

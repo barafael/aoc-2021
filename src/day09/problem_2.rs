@@ -1,5 +1,5 @@
-use std::collections::{HashSet, VecDeque};
 use crate::neighbours::direct_neighbours_of;
+use std::collections::{HashSet, VecDeque};
 
 pub fn expand_region(input: &[Vec<u8>], seed: (usize, usize)) -> HashSet<(usize, usize)> {
     let mut visited = HashSet::new();
@@ -22,12 +22,12 @@ pub fn expand_region(input: &[Vec<u8>], seed: (usize, usize)) -> HashSet<(usize,
 
 #[cfg(test)]
 mod tests {
+    use crate::day09::{find_low_points, parse_to_vec_vec, test::INPUT};
     use itertools::Itertools;
 
-    use crate::day09::{
-        find_low_points, parse_to_vec_vec,
-        test::{EXAMPLE_INPUT, INPUT},
-    };
+    #[cfg(feature = "non_solution_test")]
+    use crate::day09::test::EXAMPLE_INPUT;
+    #[cfg(feature = "non_solution_test")]
     use std::collections::HashSet;
 
     #[cfg(feature = "non_solution_test")]

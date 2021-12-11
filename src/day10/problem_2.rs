@@ -22,14 +22,16 @@ pub fn calculate_score(completion: &[Tag]) -> usize {
 
 #[cfg(test)]
 mod tests {
-    use itertools::Itertools;
+    use super::calculate_score;
     use crate::day10::{
         inspect::{inspect, LineStatus},
         parse_navigation_program,
-        tag::Tag,
-        test::{EXAMPLE_INPUT, INPUT},
+        test::INPUT,
     };
-    use super::calculate_score;
+    use itertools::Itertools;
+
+    #[cfg(feature = "non_solution_test")]
+    use crate::day10::tag::Tag;
 
     #[cfg(feature = "non_solution_test")]
     #[test]
@@ -148,7 +150,7 @@ mod tests {
     #[cfg(feature = "non_solution_test")]
     #[test]
     fn calculates_example_result() {
-        let input = parse_navigation_program(EXAMPLE_INPUT);
+        let input = parse_navigation_program(crate::day10::test::EXAMPLE_INPUT);
         let score = input
             .iter()
             .map(|line| inspect(line))

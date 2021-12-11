@@ -51,7 +51,8 @@ impl Fish {
 
 #[cfg(test)]
 mod test {
-    use super::Fish;
+    #[cfg(feature = "non_solution_test")]
+    use crate::day06::naive::fish::Fish;
 
     #[cfg(feature = "non_solution_test")]
     #[test]

@@ -56,9 +56,12 @@ pub fn deduce_two_and_five(
 
 #[cfg(test)]
 mod test {
+    #[cfg(feature = "non_solution_test")]
+    use crate::day08::sevenseg_deduction::deduce_six_and_zero_nine;
+    #[cfg(feature = "non_solution_test")]
+    use crate::day08::sevenseg_deduction::deduce_three_and_two_five;
+    #[cfg(feature = "non_solution_test")]
     use std::collections::HashSet;
-
-    use crate::day08::sevenseg_deduction::{deduce_six_and_zero_nine, deduce_three_and_two_five};
 
     #[cfg(feature = "non_solution_test")]
     #[test]

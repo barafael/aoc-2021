@@ -1,52 +1,13 @@
 #[cfg(test)]
 mod tests {
+    #[cfg(feature = "non_solution_test")]
+    use crate::day10::test::EXAMPLE_INPUT;
+
     use crate::day10::{
         inspect::{inspect, LineStatus},
         parse_navigation_program,
-        test::{EXAMPLE_INPUT, INPUT},
-        Tag,
+        test::INPUT,
     };
-
-    // TODO move some tests to inspect.rs
-    #[cfg(feature = "non_solution_test")]
-    #[test]
-    fn detects_close_curly_brace() {
-        let line = "{([(<{}[<>[]}>{[]{[(<()>";
-        let program = parse_navigation_program(line);
-        let result = inspect(&program[0]);
-        assert_eq!(LineStatus::Corrupt(Tag::CloseCurlyBrace), result);
-    }
-
-    #[cfg(feature = "non_solution_test")]
-    #[test]
-    fn detects_close_parenthesis() {
-        let line = "[[<[([]))<([[{}[[()]]]";
-        let program = parse_navigation_program(line);
-        let result = inspect(&program[0]);
-        assert_eq!(LineStatus::Corrupt(Tag::CloseParenthesis), result);
-        let line = "[<(<(<(<{}))><([]([]()";
-        let program = parse_navigation_program(line);
-        let result = inspect(&program[0]);
-        assert_eq!(LineStatus::Corrupt(Tag::CloseParenthesis), result);
-    }
-
-    #[cfg(feature = "non_solution_test")]
-    #[test]
-    fn detects_close_square_bracket() {
-        let line = "[{[{({}]{}}([{[{{{}}([]";
-        let program = parse_navigation_program(line);
-        let result = inspect(&program[0]);
-        assert_eq!(LineStatus::Corrupt(Tag::CloseSquareBracket), result);
-    }
-
-    #[cfg(feature = "non_solution_test")]
-    #[test]
-    fn detects_close_angle_bracket() {
-        let line = "<{([([[(<>()){}]>(<<{{";
-        let program = parse_navigation_program(line);
-        let result = inspect(&program[0]);
-        assert_eq!(LineStatus::Corrupt(Tag::CloseAngleBracket), result);
-    }
 
     #[cfg(feature = "non_solution_test")]
     #[test]

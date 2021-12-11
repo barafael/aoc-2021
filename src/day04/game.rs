@@ -66,7 +66,10 @@ impl TryFrom<&str> for Game {
 
 #[cfg(test)]
 mod test {
+    #[cfg(feature = "non_solution_test")]
     use super::Game;
+
+    #[cfg(feature = "non_solution_test")]
     use crate::day04::{
         board::Board,
         test::{EXAMPLE_INPUT, INPUT},

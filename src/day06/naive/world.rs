@@ -1,8 +1,7 @@
+use super::fish::{self, Fish};
 use itertools::Itertools;
 use std::num::ParseIntError;
 use thiserror::Error;
-
-use super::fish::{self, Fish};
 
 #[derive(Debug, Error)]
 pub enum Error {
@@ -79,8 +78,11 @@ impl std::fmt::Display for World {
 
 #[cfg(test)]
 mod test {
-    use super::World;
-    use crate::day06::{naive::fish::Fish, test::INPUT};
+    #[cfg(feature = "non_solution_test")]
+    use crate::day06::{
+        naive::{fish::Fish, world::World},
+        test::INPUT,
+    };
 
     #[cfg(feature = "non_solution_test")]
     #[test]

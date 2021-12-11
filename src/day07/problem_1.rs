@@ -20,16 +20,12 @@ pub fn calculate_crab_cost(initial_positions: &[usize]) -> Option<usize> {
 
 #[cfg(test)]
 mod tests {
-    use crate::day07::{
-        parse_to_vec,
-        problem_1::calculate_crab_cost,
-        test::{EXAMPLE_INPUT, INPUT},
-    };
+    use crate::day07::{parse_to_vec, problem_1::calculate_crab_cost, test::INPUT};
 
     #[cfg(feature = "non_solution_test")]
     #[test]
     fn brute_force_on_example_data() {
-        let example_data = parse_to_vec(EXAMPLE_INPUT).unwrap();
+        let example_data = parse_to_vec(crate::day07::test::EXAMPLE_INPUT).unwrap();
         let sum = calculate_crab_cost(&example_data);
         assert_eq!(37, sum.unwrap());
     }

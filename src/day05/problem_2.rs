@@ -1,11 +1,8 @@
 #[cfg(test)]
 mod tests {
-    use crate::day05::{
-        map::Map,
-        test::{EXAMPLE_INPUT, INPUT},
-        Sequence,
-    };
+    use crate::day05::{map::Map, test::INPUT, Sequence};
 
+    #[cfg(feature = "non_solution_test")]
     const MAP_WITH_DIAGONALS: &str = r##"1.1....11.
 .111...2..
 ..2.1.111.
@@ -22,7 +19,7 @@ mod tests {
     #[test]
     fn computes_example() {
         let mut map = Map::new(10, 10);
-        let seq = Sequence::try_from(EXAMPLE_INPUT).unwrap();
+        let seq = Sequence::try_from(crate::day05::test::EXAMPLE_INPUT).unwrap();
         for line in seq.0 {
             map.feed(&line);
         }

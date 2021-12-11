@@ -15,6 +15,7 @@ pub fn parse_octopi(input: &str) -> Vec<Vec<u8>> {
 
 #[cfg(test)]
 mod test {
+    #[cfg(feature = "non_solution_test")]
     use super::parse_octopi;
 
     pub const INPUT: &str = include_str!("../../input/day11.txt");

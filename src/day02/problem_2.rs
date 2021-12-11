@@ -18,11 +18,12 @@ pub fn navigate_by_course(course: &[Command]) -> Position {
 
 #[cfg(test)]
 mod tests {
-    use crate::day02::{parse, problem_2::navigate_by_course, Command, INPUT};
+    use crate::day02::{parse, problem_2::navigate_by_course, INPUT};
 
     #[cfg(feature = "non_solution_test")]
     #[test]
     fn basic_input_results_in_900() {
+        use crate::day02::Command;
         let course = vec![
             Command::Forward(5),
             Command::Down(5),

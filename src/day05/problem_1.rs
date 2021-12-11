@@ -20,11 +20,10 @@ impl Map {
 
 #[cfg(test)]
 mod tests {
-    use crate::day05::{
-        map::Map,
-        test::{EXAMPLE_INPUT, INPUT},
-        Sequence,
-    };
+    use crate::day05::{map::Map, test::INPUT, Sequence};
+
+    #[cfg(feature = "non_solution_test")]
+    use crate::day05::test::EXAMPLE_INPUT;
 
     #[cfg(feature = "non_solution_test")]
     #[test]

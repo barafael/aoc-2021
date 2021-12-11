@@ -1,9 +1,9 @@
 use self::tag::Tag;
 
+pub mod inspect;
 pub mod problem_1;
 pub mod problem_2;
 pub mod tag;
-pub mod inspect;
 
 pub fn parse_navigation_program(input: &str) -> Vec<Vec<Tag>> {
     input
@@ -19,9 +19,12 @@ pub fn parse_navigation_program(input: &str) -> Vec<Vec<Tag>> {
 
 #[cfg(test)]
 mod test {
+    #[cfg(feature = "non_solution_test")]
     use super::parse_navigation_program;
 
     pub const INPUT: &str = include_str!("../../input/day10.txt");
+
+    #[cfg(feature = "non_solution_test")]
     pub const EXAMPLE_INPUT: &str = "[({(<(())[]>[[{[]{<()<>>
 [(()[<>])]({[<{<<[]>>(
 {([(<{}[<>[]}>{[]{[(<()>

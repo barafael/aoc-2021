@@ -1,9 +1,9 @@
 #[cfg(test)]
 mod tests {
-    use crate::day06::{
-        naive::{fish::Fish, world::World},
-        test::INPUT,
-    };
+    #[cfg(feature = "non_solution_test")]
+    use crate::day06::naive::fish::Fish;
+
+    use crate::day06::{naive::world::World, test::INPUT};
 
     #[cfg(feature = "non_solution_test")]
     #[test]

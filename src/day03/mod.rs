@@ -34,6 +34,7 @@ pub fn parse_from_str(s: &str) -> Vec<u16> {
 
 #[cfg(test)]
 mod test {
+    #[cfg(feature = "non_solution_test")]
     use crate::day03::{count_ones_in_all_columns, count_ones_in_column, parse_from_str};
 
     pub const INPUT: &str = include_str!("../../input/day03.txt");

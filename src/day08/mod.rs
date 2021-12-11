@@ -49,9 +49,11 @@ pub fn parse_to_vec(input: &str) -> Vec<Entry> {
 
 #[cfg(test)]
 mod test {
-    use super::parse_to_vec;
-
     pub const INPUT: &str = include_str!("../../input/day08.txt");
+
+    #[cfg(feature = "non_solution_test")]
+    use super::parse_to_vec;
+    #[cfg(feature = "non_solution_test")]
     pub const EXAMPLE_INPUT: &str =
         "be cfbegad cbdgef fgaecd cgeb fdcge agebfd fecdb fabcd edb | fdgacbe cefdb cefbgd gcbe
 edbfga begcd cbg gc gcadebf fbgde acbgfd abcde gfcbed gfec | fcgedb cgb dgebacf gc

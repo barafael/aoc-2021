@@ -7,6 +7,7 @@ pub mod problem_2;
 mod test {
     pub const INPUT: &str = include_str!("../../input/day04.txt");
 
+    #[cfg(feature = "non_solution_test")]
     pub const EXAMPLE_INPUT: &str = r"7,4,9,5,11,17,23,2,0,14,21,24,10,16,13,6,15,25,12,22,18,20,8,19,3,26,1
 
 22 13 17 11  0

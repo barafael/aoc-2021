@@ -53,7 +53,9 @@ fn filter_position(patterns: &[u16], position: usize, is_one: bool) -> Vec<u16> 
 
 #[cfg(test)]
 mod tests {
-    use super::filter_position;
+    #[cfg(feature = "non_solution_test")]
+    use crate::day03::problem_2::filter_position;
+
     use crate::day03::{
         parse_from_str,
         problem_2::{calculate_co2_rating, calculate_oxygen_rating},

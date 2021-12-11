@@ -70,11 +70,12 @@ fn filter_by_len(input: &[HashSet<char>], len: usize) -> Vec<HashSet<char>> {
 
 #[cfg(test)]
 mod tests {
-    use super::{deduce_7seg_cabling, filter_by_len};
-    use crate::day08::{
-        parse_to_vec,
-        test::{EXAMPLE_INPUT, INPUT},
-    };
+    use super::deduce_7seg_cabling;
+    use crate::day08::{parse_to_vec, test::INPUT};
+
+    #[cfg(feature = "non_solution_test")]
+    use crate::day08::test::EXAMPLE_INPUT;
+    #[cfg(feature = "non_solution_test")]
     use std::collections::HashSet;
 
     #[cfg(feature = "non_solution_test")]
@@ -116,7 +117,7 @@ mod tests {
             .map(|chars| chars.chars().collect::<HashSet<_>>())
             .collect::<Vec<HashSet<_>>>();
 
-        let filtered = filter_by_len(&sets, 3);
+        let filtered = crate::day08::problem_2::filter_by_len(&sets, 3);
         assert_eq!(3, filtered.len());
         assert!(filtered.iter().all(|s| s.len() == 3));
     }
