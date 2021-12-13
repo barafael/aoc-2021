@@ -1,5 +1,4 @@
 use std::str::FromStr;
-
 use itertools::Itertools;
 
 pub mod problem_1;
@@ -100,6 +99,22 @@ impl UserManual {
             .map(|(x, y)| (*x + min, *y))
             .collect::<Vec<_>>();
         self.coordinates = new_coordinates
+    }
+}
+
+impl std::fmt::Display for UserManual {
+    fn fmt(&self, f: &mut std::fmt::Formatter<'_>) -> std::fmt::Result {
+        let width = self.coordinates.iter().map(|(x, _y)| x).max().unwrap();
+        let depth = self.coordinates.iter().map(|(_x, y)| y).max().unwrap();
+        let mut grid = vec![vec!['.'; *width as usize + 1]; *depth as usize + 1];
+        for (x, y) in &self.coordinates {
+            grid[*y as usize][*x as usize] = '#';
+        }
+        for line in &grid {
+            write!(f, "{}", line.iter().format(""))?;
+            writeln!(f)?;
+        }
+        Ok(())
     }
 }
 
@@ -261,5 +276,27 @@ fold along x=5";
             instructions: vec![Fold::Horizontal(7)],
         };
         assert_eq!(expected, manual);
+    }
+
+    #[test]
+    fn formats_example_input() {
+        let manual = UserManual::from_str(EXAMPLE_INPUT).unwrap();
+        let expected = "...#..#..#.
+....#......
+...........
+#..........
+...#....#.#
+...........
+...........
+...........
+...........
+...........
+.#....#.##.
+....#......
+......#...#
+#..........
+#.#........
+";
+        assert_eq!(expected, format!("{}", manual));
     }
 }
