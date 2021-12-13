@@ -10,7 +10,7 @@ mod tests {
             if party.iter().all(|line| line.iter().all(|o| *o == 0)) {
                 break;
             }
-            let (_, new_party) = octopus_blinky_party(party);
+            let (_, new_party) = octopus_blinky_party(&party);
             party = new_party;
             index += 1;
         }

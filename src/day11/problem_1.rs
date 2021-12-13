@@ -2,14 +2,14 @@ use itertools::Itertools;
 
 use crate::neighbours::{diagonal_neighbours_of, direct_neighbours_of};
 
-pub fn prettyprint_party(party: Vec<Vec<u8>>) {
+pub fn prettyprint_party(party: &[Vec<u8>]) {
     println!(
         "{:?}",
         party.iter().map(|l| l.iter().format("")).format("\n")
     );
 }
 
-pub fn octopus_blinky_party(input: Vec<Vec<u8>>) -> (usize, Vec<Vec<u8>>) {
+pub fn octopus_blinky_party(input: &[Vec<u8>]) -> (usize, Vec<Vec<u8>>) {
     let mut step_1 = input
         .iter()
         .map(|l| l.iter().map(|o| o + 1).collect::<Vec<_>>())
@@ -31,8 +31,8 @@ pub fn octopus_blinky_party(input: Vec<Vec<u8>>) -> (usize, Vec<Vec<u8>>) {
                 if *elem > 9 {
                     *elem = 0;
                     count += 1;
-                    let direct_neighbours = direct_neighbours_of(&input, (i, j));
-                    let diagonal_neighbours = diagonal_neighbours_of(&input, (i, j));
+                    let direct_neighbours = direct_neighbours_of(input, (i, j));
+                    let diagonal_neighbours = diagonal_neighbours_of(input, (i, j));
                     for neighbours in direct_neighbours.iter().chain(&diagonal_neighbours) {
                         mask[neighbours.0][neighbours.1] += 1;
                     }
@@ -64,7 +64,7 @@ mod tests {
 19991
 11111";
         let party = parse_octopi(initial);
-        let party = octopus_blinky_party(party);
+        let party = octopus_blinky_party(&party);
         assert_eq!(
             (
                 9,
@@ -78,7 +78,7 @@ mod tests {
             ),
             party
         );
-        let party = octopus_blinky_party(party.1);
+        let party = octopus_blinky_party(&party.1);
         assert_eq!(
             (
                 0,
@@ -111,7 +111,7 @@ mod tests {
         );
         let mut sum = 0;
         for _i in 0..10 {
-            let (flashes, new_party) = octopus_blinky_party(party);
+            let (flashes, new_party) = octopus_blinky_party(&party);
             party = new_party;
             sum += flashes;
         }
@@ -138,7 +138,7 @@ mod tests {
         let mut party = parse_octopi(INPUT);
         let mut sum = 0;
         for _i in 0..100 {
-            let (flashes, new_party) = octopus_blinky_party(party);
+            let (flashes, new_party) = octopus_blinky_party(&party);
             party = new_party;
             sum += flashes;
         }

@@ -29,23 +29,24 @@ pub fn diagonal_neighbours_of(input: &[Vec<u8>], seed: (usize, usize)) -> Vec<(u
     let mut neighbours = vec![];
     // top left.
     if seed.0 != 0 && seed.1 != 0 {
-        neighbours.push((seed.0 - 1, seed.1 - 1))
+        neighbours.push((seed.0 - 1, seed.1 - 1));
     }
     // top right.
     if seed.0 != 0 && seed.1 != input[0].len() - 1 {
-        neighbours.push((seed.0 - 1, seed.1 + 1))
+        neighbours.push((seed.0 - 1, seed.1 + 1));
     }
     // bottom left.
     if seed.0 != input.len() - 1 && seed.1 != 0 {
-        neighbours.push((seed.0 + 1, seed.1 - 1))
+        neighbours.push((seed.0 + 1, seed.1 - 1));
     }
     // bottom right.
     if seed.0 != input.len() - 1 && seed.1 != input[0].len() - 1 {
-        neighbours.push((seed.0 + 1, seed.1 + 1))
+        neighbours.push((seed.0 + 1, seed.1 + 1));
     }
     neighbours
 }
 
+#[cfg(feature = "non_solution_test")]
 #[cfg(test)]
 mod test {
     use crate::neighbours::{diagonal_neighbours_of, direct_neighbours_of};
