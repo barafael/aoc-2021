@@ -1,4 +1,4 @@
-pub fn extend_5x5_tiled(grid: Vec<Vec<usize>>) -> Vec<Vec<usize>> {
+pub fn extend_5x5_tiled(grid: &[Vec<usize>]) -> Vec<Vec<usize>> {
     let mut result = vec![vec![0; 5 * grid[0].len()]; 5 * grid.len()];
     for i in 0..5 {
         for j in 0..5 {
@@ -17,14 +17,14 @@ pub fn extend_5x5_tiled(grid: Vec<Vec<usize>>) -> Vec<Vec<usize>> {
                         })
                         .collect()
                 })
-                .collect();
+                .collect::<Vec<_>>();
             copy_grid_onto(&grid, &mut result, (i * grid[0].len(), j * grid.len()));
         }
     }
     result
 }
 
-fn copy_grid_onto(grid: &Vec<Vec<usize>>, onto: &mut Vec<Vec<usize>>, coords: (usize, usize)) {
+fn copy_grid_onto(grid: &[Vec<usize>], onto: &mut Vec<Vec<usize>>, coords: (usize, usize)) {
     for (i, line) in grid.iter().enumerate() {
         for (j, elem) in line.iter().enumerate() {
             onto[i + coords.0][j + coords.1] = *elem;
@@ -74,13 +74,13 @@ mod tests {
     #[test]
     fn computes_example_solution() {
         let grid = parse_grid(EXAMPLE_INPUT);
-        let large_grid = extend_5x5_tiled(grid);
+        let large_grid = extend_5x5_tiled(&grid);
         let string = large_grid
             .iter()
             .map(|line| format!("{}\n", line.iter().format("")))
             .collect::<String>();
         println!("{}", string);
-        let graph = graph_from_grid(large_grid);
+        let graph = graph_from_grid(&large_grid);
         let start = graph.nodes().find(|node| *node == (0, 0)).unwrap();
         let goal = graph.nodes().find(|node| *node == (49, 49)).unwrap();
         let result = petgraph::algo::dijkstra(&graph, start, Some(goal), |s| *s.2);
@@ -90,8 +90,8 @@ mod tests {
     #[test]
     fn computes_solution() {
         let grid = parse_grid(INPUT);
-        let large_grid = extend_5x5_tiled(grid);
-        let graph = graph_from_grid(large_grid);
+        let large_grid = extend_5x5_tiled(&grid);
+        let graph = graph_from_grid(&large_grid);
         let start = graph.nodes().find(|node| *node == (0, 0)).unwrap();
         let goal = graph.nodes().find(|node| *node == (499, 499)).unwrap();
         let result = petgraph::algo::dijkstra(&graph, start, Some(goal), |s| *s.2);

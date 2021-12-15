@@ -1,7 +1,7 @@
 use itertools::Itertools;
 use std::collections::HashMap;
 
-pub fn apply_replacements_naive(template: String, rules: &HashMap<String, char>) -> String {
+pub fn apply_replacements_naive(template: &str, rules: &HashMap<String, char>) -> String {
     let mut result = template
         .chars()
         .tuple_windows::<(char, char)>()
@@ -33,7 +33,7 @@ mod tests {
         let (template, rules) = parse_input(EXAMPLE_INPUT);
         assert_eq!(
             "NCNBCHB".to_string(),
-            apply_replacements_naive(template, &rules)
+            apply_replacements_naive(&template, &rules)
         );
     }
 
@@ -42,7 +42,7 @@ mod tests {
         let (template, rules) = parse_input(EXAMPLE_INPUT);
         let mut input = template;
         for _i in 0..10 {
-            input = apply_replacements_naive(input, &rules);
+            input = apply_replacements_naive(&input, &rules);
         }
         assert_eq!(3073, input.len());
         let mut counters = HashMap::<char, usize>::new();
@@ -61,7 +61,7 @@ mod tests {
         let (template, rules) = parse_input(INPUT);
         let mut input = template;
         for _i in 0..10 {
-            input = apply_replacements_naive(input, &rules);
+            input = apply_replacements_naive(&input, &rules);
         }
         let mut counters = HashMap::<char, usize>::new();
         for c in input.chars() {

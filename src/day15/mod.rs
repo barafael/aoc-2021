@@ -13,13 +13,13 @@ pub fn parse_grid(input: &str) -> Vec<Vec<usize>> {
         .collect::<Vec<_>>()
 }
 pub fn graph_from_grid(
-    grid: Vec<Vec<usize>>,
+    grid: &[Vec<usize>],
 ) -> petgraph::graphmap::DiGraphMap<(usize, usize), usize> {
     let mut matrix_graph = petgraph::graphmap::DiGraphMap::new();
 
     for i in 0..grid.len() {
         for j in 0..grid[i].len() {
-            let neighbours = neighbours::direct_neighbours_of(&grid, (i, j));
+            let neighbours = neighbours::direct_neighbours_of(grid, (i, j));
             let node = matrix_graph.add_node((i, j));
             for neighbour in neighbours {
                 let n_idx = matrix_graph.add_node(neighbour);
@@ -53,7 +53,7 @@ mod test {
     #[test]
     fn parses_graph() {
         let grid = parse_grid(EXAMPLE_INPUT);
-        let graph = graph_from_grid(grid);
+        let graph = graph_from_grid(&grid);
         assert_eq!(
             include_str!("example_graph.dot"),
             format!("{:?}", Dot::with_config(&graph, &[]))
@@ -63,7 +63,7 @@ mod test {
     #[test]
     fn finds_shortest_path_in_example() {
         let grid = parse_grid(EXAMPLE_INPUT);
-        let graph = graph_from_grid(grid);
+        let graph = graph_from_grid(&grid);
         let start = graph.nodes().find(|node| *node == (0, 0)).unwrap();
         let goal = graph.nodes().find(|node| *node == (9, 9)).unwrap();
         let result = petgraph::algo::dijkstra(&graph, start, Some(goal), |s| *s.2);
@@ -73,7 +73,7 @@ mod test {
     #[test]
     fn finds_shortest_path() {
         let grid = parse_grid(INPUT);
-        let graph = graph_from_grid(grid);
+        let graph = graph_from_grid(&grid);
         let start = graph.nodes().find(|node| *node == (0, 0)).unwrap();
         let goal = graph.nodes().find(|node| *node == (99, 99)).unwrap();
         let result = petgraph::algo::dijkstra(&graph, start, Some(goal), |s| *s.2);

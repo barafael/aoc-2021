@@ -6,7 +6,7 @@ pub fn apply_replacement(
     char_count: &mut HashMap<u8, usize>,
 ) -> HashMap<[u8; 2], usize> {
     let mut new_pairs = HashMap::new();
-    for (pair, count) in pairs.into_iter() {
+    for (pair, count) in pairs {
         if let Some(insert) = rules.get(&pair) {
             let key1: [u8; 2] = [pair[0], *insert];
             let key2: [u8; 2] = [*insert, pair[1]];
@@ -16,7 +16,7 @@ pub fn apply_replacement(
             *second += count;
             char_count.entry(*insert).and_modify(|val| *val += count);
         } else {
-            unreachable!()
+            unreachable!();
         }
     }
     new_pairs
@@ -30,11 +30,7 @@ pub fn print_table(map: &HashMap<[u8; 2], usize>) {
 
 #[cfg(test)]
 mod tests {
-    use crate::day14::{
-        parse_input,
-        problem_2::{apply_replacement, print_table},
-        test::{EXAMPLE_INPUT, INPUT},
-    };
+    use crate::day14::{parse_input, problem_2::apply_replacement, test::EXAMPLE_INPUT};
     use std::collections::HashMap;
 
     #[test]
@@ -69,7 +65,7 @@ mod tests {
         }
         let max = dbg!(counts.values().max().unwrap());
         let min = dbg!(counts.values().min().unwrap());
-        let sum = pairs.values().sum::<usize>() + 1;
+        let _sum = pairs.values().sum::<usize>() + 1;
         //assert_eq!(3073, sum);
         assert_eq!(2188189693529, max - min);
     }
