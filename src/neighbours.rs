@@ -1,25 +1,25 @@
 /// Assumes all rows have equal length.
-pub fn direct_neighbours_of(input: &[Vec<u8>], seed: (usize, usize)) -> Vec<(usize, usize)> {
+pub fn direct_neighbours_of<T>(input: &[Vec<T>], coord: (usize, usize)) -> Vec<(usize, usize)> {
     let mut neighbours = vec![];
     // top.
-    if seed.0 != 0 {
-        let i = seed.0 - 1;
-        neighbours.push((i, seed.1));
+    if coord.0 != 0 {
+        let i = coord.0 - 1;
+        neighbours.push((i, coord.1));
     }
     // right.
-    if seed.1 != input[0].len() - 1 {
-        let j = seed.1 + 1;
-        neighbours.push((seed.0, j));
+    if coord.1 != input[0].len() - 1 {
+        let j = coord.1 + 1;
+        neighbours.push((coord.0, j));
     }
     // bottom.
-    if seed.0 != input.len() - 1 {
-        let i = seed.0 + 1;
-        neighbours.push((i, seed.1));
+    if coord.0 != input.len() - 1 {
+        let i = coord.0 + 1;
+        neighbours.push((i, coord.1));
     }
     // right.
-    if seed.1 != 0 {
-        let j = seed.1 - 1;
-        neighbours.push((seed.0, j));
+    if coord.1 != 0 {
+        let j = coord.1 - 1;
+        neighbours.push((coord.0, j));
     }
     neighbours
 }
