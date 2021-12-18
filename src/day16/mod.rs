@@ -41,10 +41,6 @@ fn num_to_arr4(num: u8) -> [u8; 4] {
 pub fn parse_to_binary(input: &str) -> Vec<u8> {
     input
         .chars()
-        .map(|c| {
-            dbg!(c);
-            c
-        })
         .map(|c| c.to_digit(16).unwrap() as u8)
         .flat_map(num_to_arr4)
         .collect()
