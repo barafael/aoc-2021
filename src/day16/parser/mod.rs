@@ -1,7 +1,6 @@
-use num_traits::FromPrimitive;
-
 use self::{literal::try_parse_literal, operator::try_parse_operator};
 use super::{Packet, Type};
+use num_traits::FromPrimitive;
 
 pub mod literal;
 pub mod operator;
