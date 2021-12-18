@@ -27,7 +27,7 @@ mod tests {
         assert_eq!(
             Packet {
                 version: 1,
-                packet_type: Type::Operator(Operator::Dummy(6)),
+                packet_type: Type::Operator(Operator::LessThan),
                 payload: vec![
                     Packet {
                         version: 6,
@@ -53,7 +53,7 @@ mod tests {
         assert_eq!(
             Packet {
                 version: 7,
-                packet_type: Type::Operator(Operator::Dummy(3)),
+                packet_type: Type::Operator(Operator::Maximum),
                 payload: vec![
                     Packet {
                         version: 2,

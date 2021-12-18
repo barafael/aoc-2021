@@ -1,5 +1,7 @@
+use num_traits::FromPrimitive;
+
 use self::{literal::try_parse_literal, operator::try_parse_operator};
-use super::{Operator, Packet, Type};
+use super::{Packet, Type};
 
 pub mod literal;
 pub mod operator;
@@ -50,7 +52,7 @@ pub fn try_parse_packet(input: &[u8]) -> Option<(Packet, &[u8])> {
         Some((
             Packet {
                 version,
-                packet_type: Type::Operator(Operator::Dummy(type_id)),
+                packet_type: Type::Operator(FromPrimitive::from_u8(type_id)?),
                 payload: packets,
             },
             remainder,
@@ -90,7 +92,7 @@ mod tests {
         assert_eq!(
             Packet {
                 version: 1,
-                packet_type: Type::Operator(Operator::Dummy(6)),
+                packet_type: Type::Operator(Operator::LessThan),
                 payload: vec![
                     Packet {
                         version: 6,

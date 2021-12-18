@@ -1,3 +1,5 @@
+use num_derive::{FromPrimitive, ToPrimitive};
+
 pub mod parser;
 pub mod problem_1;
 pub mod problem_2;
@@ -8,10 +10,16 @@ pub enum Type {
     Operator(Operator),
 }
 
-#[derive(Copy, Clone, Debug, PartialEq, Eq)]
+#[derive(Copy, Clone, Debug, PartialEq, FromPrimitive, ToPrimitive, Eq)]
 #[non_exhaustive]
 pub enum Operator {
-    Dummy(u8),
+    Sum = 0,
+    Product = 1,
+    Minimum = 2,
+    Maximum = 3,
+    GreaterThan = 5,
+    LessThan = 6,
+    EqualTo = 7,
 }
 
 #[derive(Clone, Debug, PartialEq, Eq)]
