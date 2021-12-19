@@ -58,15 +58,17 @@ impl Number {
         }
 
         if lvl == 4 {
-            let (l, r) = self.unpair();
+            if let Self::Pair(box Number::Literal(l), box Number::Literal(r)) = self {
+                let l_exp = ExplodeCarry::Lhs(*l);
+                let r_exp = ExplodeCarry::Rhs(*r);
 
-            let l_exp = ExplodeCarry::Lhs(l);
-            let r_exp = ExplodeCarry::Rhs(r);
+                *self = Self::Literal(0);
+                *stable = false;
 
-            *self = Self::Literal(0);
-            *stable = false;
-
-            return (Some(l_exp), Some(r_exp));
+                return (Some(l_exp), Some(r_exp));
+            } else {
+                panic!("Expected a pair of literals");
+            }
         }
 
         if lvl < 4 {
@@ -81,25 +83,7 @@ impl Number {
                 }
             }
         }
-
         (None, None)
-    }
-
-    fn unwrap_literal(&self) -> u64 {
-        if let Self::Literal(l) = self {
-            *l
-        } else {
-            unreachable!("Expected a number literal")
-        }
-    }
-
-    fn unpair(&self) -> (u64, u64) {
-        if let Self::Pair(l, r) = self {
-            if matches!(**l, Self::Literal(_)) && matches!(**r, Self::Literal(_)) {
-                return (l.unwrap_literal(), r.unwrap_literal());
-            }
-        }
-        panic!("Expected a pair of literals");
     }
 
     fn carry(&mut self, carried: &ExplodeCarry) -> ExplodeCarry {
@@ -149,16 +133,14 @@ impl Number {
     pub fn magnitude(&self) -> usize {
         match self {
             Self::Literal(n) => *n as usize,
+            Self::Pair(box Number::Literal(l), box Number::Literal(r)) => {
+                3 * (*l as usize) + 2 * (*r as usize)
+            }
             Self::Pair(l, r) => {
-                if matches!(**l, Self::Literal(_)) && matches!(**r, Self::Literal(_)) {
-                    let (l, r) = self.unpair();
-                    3 * (l as usize) + 2 * (r as usize)
-                } else {
-                    let l = l.magnitude();
-                    let r = r.magnitude();
+                let l = l.magnitude();
+                let r = r.magnitude();
 
-                    3 * (l as usize) + 2 * (r as usize)
-                }
+                3 * (l as usize) + 2 * (r as usize)
             }
         }
     }

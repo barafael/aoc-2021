@@ -1,4 +1,5 @@
 #![feature(int_abs_diff)]
+#![feature(box_patterns)]
 
 pub mod day01;
 pub mod day02;
