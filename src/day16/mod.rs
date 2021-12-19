@@ -26,10 +26,10 @@ pub enum Operator {
 pub struct Packet {
     version: u8,
     packet_type: Type,
-    payload: Vec<Packet>,
+    payload: Vec<Self>,
 }
 
-fn num_to_arr4(num: u8) -> [u8; 4] {
+const fn num_to_arr4(num: u8) -> [u8; 4] {
     [
         (num & 0b1000 != 0) as u8,
         (num & 0b0100 != 0) as u8,
