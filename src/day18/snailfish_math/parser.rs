@@ -9,9 +9,8 @@ pub fn parse_input(input: &str) -> Vec<Number> {
 
 #[cfg(test)]
 mod test {
-    use crate::day18::test::{EXAMPLE, INPUT};
-
     use super::parse_input;
+    use crate::day18::test::{EXAMPLE, INPUT};
     use itertools::Itertools;
 
     #[test]
