@@ -9,7 +9,7 @@ mod tests {
         let sum = find_low_points(&input)
             .iter()
             .map(|(x, y)| input[*x][*y] as u64 + 1)
-            .sum();
+            .sum::<u64>();
         assert_eq!(15u64, sum);
     }
 
@@ -19,7 +19,7 @@ mod tests {
         let sum = find_low_points(&input)
             .iter()
             .map(|(x, y)| input[*x][*y] as u64 + 1)
-            .sum();
+            .sum::<u64>();
         assert_eq!(539u64, sum);
     }
 }
