@@ -12,6 +12,7 @@ pub fn parse_grid(input: &str) -> Vec<Vec<usize>> {
         })
         .collect::<Vec<_>>()
 }
+
 pub fn graph_from_grid(
     grid: &[Vec<usize>],
 ) -> petgraph::graphmap::DiGraphMap<(usize, usize), usize> {
