@@ -3,7 +3,7 @@ use itertools::Itertools;
 pub fn try_parse_literal(input: &[u8]) -> Option<(u64, &[u8])> {
     let mut literal_vec = vec![];
     for chunk in input.iter().chunks(5).into_iter() {
-        let vec = chunk.cloned().collect_vec();
+        let vec = chunk.copied().collect_vec();
         literal_vec.extend_from_slice(&vec[1..]);
         if vec[0] == 0 {
             break;

@@ -2,12 +2,7 @@ use super::Packet;
 
 impl Packet {
     pub fn version_sum(&self) -> usize {
-        self.version as usize
-            + self
-                .payload
-                .iter()
-                .map(|packet| packet.version_sum())
-                .sum::<usize>()
+        self.version as usize + self.payload.iter().map(Self::version_sum).sum::<usize>()
     }
 }
 

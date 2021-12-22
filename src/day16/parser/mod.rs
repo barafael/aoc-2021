@@ -14,7 +14,7 @@ pub fn try_parse_version(input: &[u8]) -> Option<(u8, &[u8])> {
         version |= 0b10;
     }
     if input.get(2)? == &1 {
-        version |= 0b1
+        version |= 0b1;
     }
     Some((version, &input[3..]))
 }
@@ -28,7 +28,7 @@ pub fn try_parse_type_id(input: &[u8]) -> Option<(u8, &[u8])> {
         type_id |= 0b10;
     }
     if input.get(2)? == &1 {
-        type_id |= 0b1
+        type_id |= 0b1;
     }
     Some((type_id, &input[3..]))
 }

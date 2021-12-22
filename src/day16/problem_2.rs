@@ -8,8 +8,8 @@ impl Packet {
             Type::Operator(op) => op,
         };
         match op {
-            Operator::Sum => self.payload.iter().map(|p| p.eval()).sum::<u64>(),
-            Operator::Product => self.payload.iter().map(|p| p.eval()).product::<u64>(),
+            Operator::Sum => self.payload.iter().map(Self::eval).sum::<u64>(),
+            Operator::Product => self.payload.iter().map(Self::eval).product::<u64>(),
             Operator::Minimum => self.payload.iter().map(Self::eval).min().unwrap(),
             Operator::Maximum => self.payload.iter().map(Self::eval).max().unwrap(),
             Operator::GreaterThan => {
