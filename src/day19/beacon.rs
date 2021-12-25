@@ -57,8 +57,8 @@ impl Beacon {
         let dz = (self.z - other.z).abs();
         let min = dx.abs().min(dy.abs()).min(dz.abs()) as i16;
         let max = dx.abs().max(dy.abs()).max(dz.abs()) as i16;
-        let mid = dx + dy + dz - min - max;
-        (min, mid, max)
+        let middle = dx + dy + dz - min - max;
+        (min, middle, max)
     }
 
     pub const fn dist(self, other: Self) -> Vector {

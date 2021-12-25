@@ -66,9 +66,8 @@ impl Number {
                 *stable = false;
 
                 return (Some(l_exp), Some(r_exp));
-            } else {
-                panic!("Expected a pair of literals");
             }
+            panic!("Expected a pair of literals");
         }
 
         if lvl < 4 {

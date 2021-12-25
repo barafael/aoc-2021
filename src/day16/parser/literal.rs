@@ -1,8 +1,8 @@
 use itertools::Itertools;
 
-pub fn try_parse_literal(input: &[u8]) -> Option<(u64, &[u8])> {
+pub fn try_parse(input: &[u8]) -> Option<(u64, &[u8])> {
     let mut literal_vec = vec![];
-    for chunk in input.iter().chunks(5).into_iter() {
+    for chunk in &input.iter().chunks(5) {
         let vec = chunk.copied().collect_vec();
         literal_vec.extend_from_slice(&vec[1..]);
         if vec[0] == 0 {
@@ -23,12 +23,12 @@ pub fn try_parse_literal(input: &[u8]) -> Option<(u64, &[u8])> {
 
 #[cfg(test)]
 mod tests {
-    use super::try_parse_literal;
+    use super::try_parse;
 
     #[test]
     fn parses_literal() {
         let input = vec![1, 0, 1, 1, 1, 1, 1, 1, 1, 0, 0, 0, 1, 0, 1, 0, 0, 0];
-        let (literal, remainder) = try_parse_literal(&input).unwrap();
+        let (literal, remainder) = try_parse(&input).unwrap();
         assert_eq!(2021, literal);
         assert_eq!(&[0, 0, 0], remainder);
     }

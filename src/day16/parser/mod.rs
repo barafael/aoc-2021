@@ -1,4 +1,4 @@
-use self::{literal::try_parse_literal, operator::try_parse_operator};
+use self::{literal::try_parse, operator::try_parse_operator};
 use super::{Packet, Type};
 use num_traits::FromPrimitive;
 
@@ -37,7 +37,7 @@ pub fn try_parse_packet(input: &[u8]) -> Option<(Packet, &[u8])> {
     let (version, remainder) = try_parse_version(input)?;
     let (type_id, remainder) = try_parse_type_id(remainder)?;
     if type_id == 4 {
-        let (literal, remainder) = try_parse_literal(remainder)?;
+        let (literal, remainder) = try_parse(remainder)?;
         Some((
             Packet {
                 version,
